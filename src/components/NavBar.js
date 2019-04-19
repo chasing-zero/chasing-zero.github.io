@@ -1,33 +1,34 @@
 import React, {Component} from 'react';
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
+import SignIn from './SignIn.js';
+import SignUp from './SignUp.js';
+import AddToInventory from './AddToInventory';
 
 class Navbar extends Component {
   render(){
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-primary navbar-fixed-top">
-        <a className="navbar-brand" href="/">
-          Dronuts
-        </a>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <a className="nav-link" href="/SignUp">Sign Up</a>
-            </li>
-          </ul>
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <a className="nav-link" href="/SignIn">Sign In </a>
-            </li>
-          </ul>
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <a className="nav-link" href="/AddToInventory">Add To Inventory </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <Router>
+          <div>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/SignIn">Sign In</Link>
+              </li>
+              <li>
+                <Link to="/SignUp">Sign Up</Link>
+              </li>
+              <li>
+                <Link to="/AddToInventory">Add To Inventory</Link>
+              </li>
+            </ul>
+            <Route path='/SignIn' component={SignIn} />
+            <Route path='/SignUp' component={SignUp} />
+            <Route path='/AddToInventory' component={AddToInventory} />
+          </div>
+      </Router>
+      
     )
   }
 }
