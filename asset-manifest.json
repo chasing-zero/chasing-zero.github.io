@@ -1,13 +1,13 @@
 {
-  "main.css": "/chasing-zero-app/static/css/main.cab392bf.chunk.css",
-  "main.js": "/chasing-zero-app/static/js/main.f49df44c.chunk.js",
-  "main.js.map": "/chasing-zero-app/static/js/main.f49df44c.chunk.js.map",
-  "runtime~main.js": "/chasing-zero-app/static/js/runtime~main.9c06a8a5.js",
-  "runtime~main.js.map": "/chasing-zero-app/static/js/runtime~main.9c06a8a5.js.map",
-  "static/js/2.0f529f8d.chunk.js": "/chasing-zero-app/static/js/2.0f529f8d.chunk.js",
-  "static/js/2.0f529f8d.chunk.js.map": "/chasing-zero-app/static/js/2.0f529f8d.chunk.js.map",
-  "index.html": "/chasing-zero-app/index.html",
-  "precache-manifest.b666e7b6400890178219304329c6393e.js": "/chasing-zero-app/precache-manifest.b666e7b6400890178219304329c6393e.js",
-  "service-worker.js": "/chasing-zero-app/service-worker.js",
-  "static/css/main.cab392bf.chunk.css.map": "/chasing-zero-app/static/css/main.cab392bf.chunk.css.map"
+  "main.css": "/static/css/main.cab392bf.chunk.css",
+  "main.js": "/static/js/main.d8ab6764.chunk.js",
+  "main.js.map": "/static/js/main.d8ab6764.chunk.js.map",
+  "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+  "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+  "static/js/2.0f529f8d.chunk.js": "/static/js/2.0f529f8d.chunk.js",
+  "static/js/2.0f529f8d.chunk.js.map": "/static/js/2.0f529f8d.chunk.js.map",
+  "index.html": "/index.html",
+  "precache-manifest.e1a15978d2b93c9882534227d22cb251.js": "/precache-manifest.e1a15978d2b93c9882534227d22cb251.js",
+  "service-worker.js": "/service-worker.js",
+  "static/css/main.cab392bf.chunk.css.map": "/static/css/main.cab392bf.chunk.css.map"
 }
