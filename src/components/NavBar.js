@@ -1,34 +1,65 @@
-import React, {Component} from 'react';
-import {Link } from 'react-router-dom';
-import 'typeface-roboto';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import ToolBar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import HomeIcon from '@material-ui/icons/Home';
 
-class Navbar extends Component {
-  render(){
-    return (
-      <div className="NavClass">
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li> 
-            <Link to="/SignUp">Sign Up</Link>
-          </li>
-          <li>
-            <Link to="/SignIn">Sign In</Link>
-          </li>
-          <li>
-            <Link to="/ManageInventory">Manage Inventory</Link>
-          </li>
-          <li>
-            <Link to="/ShoppingListBuilder">Shopping List Builder</Link>
-          </li>
-          <li>
-            <Link to="/ViewRecipes">View Recipes Based on Your Inventory</Link>
-          </li>
-        </ul>
-      </div>
-    )
-  }
+const styles = {
+  link: {
+    marginLeft: 10,
+    marginRight: 10,
+  }, 
+  homeButton: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
+};
+
+function NavBar(props) {
+  const { classes } = props;
+  return (
+    <div className={classes.root}>
+      <AppBar position="static" className="NavClass">
+        <ToolBar>
+
+          <IconButton component={Link} to='/' className={classes.homeButton} color="inherit" aria-label="Menu">
+            <HomeIcon />
+          </IconButton>
+
+          <Typography component={Link} to='/SignUp' variant="h6" color="inherit" className={classes.link}>
+            Sign Up
+          </Typography>
+
+          <Typography component={Link} to='/SignIn' variant="h6" color="inherit" className={classes.link}>
+            Sign In
+          </Typography>
+
+          <Typography component={Link} to='/ManageInventory' variant="h6" color="inherit" className={classes.link}>
+            Manage Inventory
+          </Typography>
+
+          <Typography component={Link} to='/ShoppingListBuilder' variant="h6" color="inherit" className={classes.link}>
+            Shopping List Builder
+          </Typography>
+
+          <Typography component={Link} to='/ViewRecipes' variant="h6" color="inherit" className={classes.link}>
+            View Recipes
+          </Typography>
+
+        </ToolBar>
+
+      </AppBar>
+    </div>
+  )
 }
 
-export default Navbar;
+NavBar.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(NavBar);
+
