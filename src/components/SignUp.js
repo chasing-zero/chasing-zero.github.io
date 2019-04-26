@@ -1,24 +1,11 @@
 import React, { Component } from 'react';
-export default class SignUp extends Component { 
-  state = { 
-  }
-  render () {                                   
-      return (
-        <div>
-             <div id='signinContainer'>
-                  <form id='form'>       
-                      <input className='input' type="text"   
-                       placeholder="First Name"/>
-                      <input className='input' type="text"  
-                       placeholder="Last Name"/>          
-                      <input className='input' type="text"  
-                       placeholder="Email"/>          
-                      <input className='input' type="password" 
-                       placeholder="Password"/>
-                      <button id='submit'>Sign Up</button>
-                  </form>
-             </div>
-        </div>
-      )
+
+class SignUp extends Component {
+  render () {   
+     return (
+          <h1> This is where the form should be. </h1>
+     )
    }
 }
+
+export default SignUp
