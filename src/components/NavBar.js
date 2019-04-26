@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {Link } from 'react-router-dom';
+import 'typeface-roboto';
 
 class Navbar extends Component {
   render(){
     return (
-      <div>
+      <div className="NavClass">
         <ul>
           <li>
             <Link to="/">Home</Link>
