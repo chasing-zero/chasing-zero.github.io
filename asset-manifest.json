@@ -1,13 +1,16 @@
 {
   "main.css": "/chasing-zero-app/static/css/main.0f8df542.chunk.css",
-  "main.js": "/chasing-zero-app/static/js/main.e0bd9bdb.chunk.js",
-  "main.js.map": "/chasing-zero-app/static/js/main.e0bd9bdb.chunk.js.map",
+  "main.js": "/chasing-zero-app/static/js/main.f9a64635.chunk.js",
+  "main.js.map": "/chasing-zero-app/static/js/main.f9a64635.chunk.js.map",
   "runtime~main.js": "/chasing-zero-app/static/js/runtime~main.9c06a8a5.js",
   "runtime~main.js.map": "/chasing-zero-app/static/js/runtime~main.9c06a8a5.js.map",
-  "static/js/2.7d66d983.chunk.js": "/chasing-zero-app/static/js/2.7d66d983.chunk.js",
-  "static/js/2.7d66d983.chunk.js.map": "/chasing-zero-app/static/js/2.7d66d983.chunk.js.map",
+  "static/css/2.dc6743c9.chunk.css": "/chasing-zero-app/static/css/2.dc6743c9.chunk.css",
+  "static/js/2.47c6be1f.chunk.js": "/chasing-zero-app/static/js/2.47c6be1f.chunk.js",
+  "static/js/2.47c6be1f.chunk.js.map": "/chasing-zero-app/static/js/2.47c6be1f.chunk.js.map",
   "index.html": "/chasing-zero-app/index.html",
-  "precache-manifest.136197b6ccb3dff82fbe374cb8f39769.js": "/chasing-zero-app/precache-manifest.136197b6ccb3dff82fbe374cb8f39769.js",
+  "precache-manifest.544b9af87c23f0513a43f7341afca559.js": "/chasing-zero-app/precache-manifest.544b9af87c23f0513a43f7341afca559.js",
   "service-worker.js": "/chasing-zero-app/service-worker.js",
-  "static/css/main.0f8df542.chunk.css.map": "/chasing-zero-app/static/css/main.0f8df542.chunk.css.map"
+  "static/css/2.dc6743c9.chunk.css.map": "/chasing-zero-app/static/css/2.dc6743c9.chunk.css.map",
+  "static/css/main.0f8df542.chunk.css.map": "/chasing-zero-app/static/css/main.0f8df542.chunk.css.map",
+  "static/media/index.css": "/chasing-zero-app/static/media/roboto-latin-900italic.bc833e72.woff"
 }
