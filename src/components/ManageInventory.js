@@ -1,26 +1,29 @@
-import React, { Component } from 'react';
-export default class ManageInventory extends Component { 
-  state = { 
-  }
-  render () {                                   
-      return (
-        <div>
-            <p> Add Items to your Inventory Here </p>
-             <div id='signinContainer'>
-                  <form id='form'>     
-                  {/*Needs to be better adapted for adding food items*/  }
-                      <input className='input' type="text"  
-                       placeholder="Food Name"/>          
-                      <input className='input' type="text" 
-                       placeholder="Quantity"/>
-                       <input className='input' type="text" 
-                       placeholder="Expiration Date"/>
-                      <button id='submit'>Add To Inventory</button>
-                  </form>
-             </div>
-             <h1> Your Pantry </h1>
-             <p> Your Inventory will be displayed here, with the option to remove items as needed </p>
-        </div>
-      )
-   }
+import React from 'react';
+import InventoryTable from './InventoryTable';
+import Typography from '@material-ui/core/Typography';
+import 'typeface-roboto';
+import { withStyles } from '@material-ui/core';
+import AddInventoryItem from './AddInventoryItem';
+
+const styles = theme => ({
+  title: {
+    marginTop: 15,
+    marginLeft: theme.spacing.unit * 2,
+  },
+});
+
+//TODO: This needs to be connected with Firebase to add/retrieve items
+function ManageInventory(props) { 
+  const { classes } = props;
+
+  return (
+    <div>
+        <Typography variant="h3" gutterBottom className={classes.title}>Add Items to your Inventory</Typography>
+        <AddInventoryItem />
+        <Typography variant="h3" gutterBottom className={classes.title}> Your Pantry </Typography>
+        <InventoryTable />
+    </div>
+  )
 }
+
+export default withStyles(styles)(ManageInventory);
