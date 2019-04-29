@@ -29,7 +29,7 @@ function ListElement(props){
 
 function ShoppingList (props){
   console.log(props.items);
-  var title = props.title;
+  //var title = props.title;
   var products = props.items.map((elem,index,items)=>{
                   return (<ListElement item = {elem}/>);  
                 });
@@ -83,7 +83,7 @@ class DisplayRecipieList extends Component{
   }
 }
 
-{/*This component manages the recepie search and selection process*/}
+/*This component manages the recepie search and selection process*/
 class RecipieList extends Component{
   /* will hold recepies to display*/
 
@@ -107,9 +107,7 @@ export default class ShoppingListBuilder extends Component {
     items : ['chicken', 'pasta', 'Alfredo']
   
   }
-  constructor(props){
-    super(props);
-  }
+  
   
   render () {   
       var itemsForList = this.state.items;                                
