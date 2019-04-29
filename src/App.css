@@ -23,8 +23,10 @@
   color: #61dafb;
 }
 
-.navbar {
-  background-color: #ef72ac !important;
+.NavClass {
+  background-color: #7a99c2 !important;
+  font-family: Roboto;
+
 }
 
 @keyframes App-logo-spin {
