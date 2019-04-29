@@ -14,6 +14,6 @@ const App = () => (
     <Main /> 
     {footer}
   </div>
-)
+);
 
 export default App;
