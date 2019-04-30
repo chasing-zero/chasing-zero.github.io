@@ -23,6 +23,12 @@
   color: #61dafb;
 }
 
+.NavClass {
+  background-color: #7a99c2 !important;
+  font-family: Roboto;
+
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

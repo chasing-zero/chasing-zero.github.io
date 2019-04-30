@@ -1,35 +1,65 @@
-import React, {Component} from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import ToolBar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import HomeIcon from '@material-ui/icons/Home';
 
-class Navbar extends Component {
-  render(){
-    return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-primary navbar-fixed-top">
-        <a className="navbar-brand" href="/">
-          Dronuts
-        </a>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <a className="nav-link" href="/SignUp">Sign Up</a>
-            </li>
-          </ul>
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <a className="nav-link" href="/SignIn">Sign In </a>
-            </li>
-          </ul>
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <a className="nav-link" href="/AddToInventory">Add To Inventory </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    )
-  }
+const styles = {
+  link: {
+    marginLeft: 10,
+    marginRight: 10,
+  }, 
+  homeButton: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
+};
+
+function NavBar(props) {
+  const { classes } = props;
+  return (
+    <div className={classes.root}>
+      <AppBar position="static" className="NavClass">
+        <ToolBar>
+
+          <IconButton component={Link} to='/' className={classes.homeButton} color="inherit" aria-label="Menu">
+            <HomeIcon />
+          </IconButton>
+
+          <Typography component={Link} to='/SignUp' variant="h6" color="inherit" className={classes.link}>
+            Sign Up
+          </Typography>
+
+          <Typography component={Link} to='/SignIn' variant="h6" color="inherit" className={classes.link}>
+            Sign In
+          </Typography>
+
+          <Typography component={Link} to='/ManageInventory' variant="h6" color="inherit" className={classes.link}>
+            Manage Inventory
+          </Typography>
+
+          <Typography component={Link} to='/ShoppingListBuilder' variant="h6" color="inherit" className={classes.link}>
+            Shopping List Builder
+          </Typography>
+
+          <Typography component={Link} to='/ViewRecipes' variant="h6" color="inherit" className={classes.link}>
+            View Recipes
+          </Typography>
+
+        </ToolBar>
+
+      </AppBar>
+    </div>
+  )
 }
 
-export default Navbar;
+NavBar.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(NavBar);
+
