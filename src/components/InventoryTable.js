@@ -26,8 +26,14 @@ const styles = {
 };
 
 class InventoryTable extends Component {
-  handleClick() {
-    alert("Button clicked");
+
+  // This function calls the function provided from App.js, passing in 
+  // the item name and document ID (in Firebase) to be deleted.
+  handleClick(item, e) {
+    e.preventDefault();
+    const { handleRemoveItem } = this.props;
+    handleRemoveItem(item.name, item.doc_id);
+
   }
 
   render() {
@@ -56,7 +62,7 @@ class InventoryTable extends Component {
                 <TableCell align="right">{n.boughtOn}</TableCell>
                 <TableCell align="right">{n.expiresOn}</TableCell>
                 <TableCell className={classes.icon} >
-                  <IconButton onClick={this.handleClick} color="inherit" align="right">
+                  <IconButton onClick={this.handleClick.bind(this, n)} color="inherit" align="right" type="submit">
                       <DeleteIcon />
                   </IconButton>
                 </TableCell>
