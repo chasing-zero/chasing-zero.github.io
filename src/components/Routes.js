@@ -12,7 +12,9 @@ class Routes extends Component {
   render() {
     return (
       <Switch>
-        <Route exact path='/' component={Landing} />
+        <Route exact path='/' render={
+          () => <Landing inventory={this.props.inventoryState.inventory}/>
+        } />
         <Route exact path='/SignUp' component={SignUp} />
         <Route exact path='/SignIn' component={SignIn} />
         <Route exact path='/ManageInventory' render={
