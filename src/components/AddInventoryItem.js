@@ -75,7 +75,7 @@ class AddInventoryItem extends Component {
             onChange={this.handleChange} />
         </FormControl>
         <FormControl margin="normal" required className={classes.itemspacing}>
-          <InputLabel>Bought On</InputLabel>
+          <InputLabel>Bought (MM/DD/YY)</InputLabel>
           <Input 
             id="boughtOn" 
             name="boughtOn"
@@ -84,7 +84,7 @@ class AddInventoryItem extends Component {
             onChange={this.handleChange}/>
         </FormControl>
         <FormControl margin="normal" required className={classes.itemspacing}>
-          <InputLabel>Expiry Date</InputLabel>
+          <InputLabel>Expires (MM/DD/YY)</InputLabel>
           <Input 
             id="expiresOn" 
             name="expiresOn"
