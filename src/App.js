@@ -30,14 +30,44 @@ const theme = createMuiTheme({
   }
 });
 
-class App extends Component {
 
+
+class App extends Component {
+  state = {
+    recipe: [],
+  }
+  async componentDidMount(){
+    try {
+        db.collection('recipe').get().then(snapshot => {
+          var data = [];
+          if (snapshot.empty) {
+            console.log('no data');
+            return
+          }
+          snapshot.forEach(doc => {
+            console.log(Object.assign({}, doc.data(), {"doc_id": doc.id}));
+
+            // We want to save the document ID as well, so save it with the rest of the data fields
+            data.push(Object.assign({}, doc.data(), {"doc_id": doc.id}));
+          })
+          this.setState({
+            recipe: data
+          })
+        })
+      } catch (error) {
+        this.setState({
+          error
+        })
+    }
+  }
   render() {
     return (
       <MuiThemeProvider theme={theme}>
         <div>
           <NavBar />
-          <Routes />
+          <Routes 
+            recipeState={this.state.recipe}
+          />
           <Footer />
         </div>
       </MuiThemeProvider>
