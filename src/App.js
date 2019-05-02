@@ -31,13 +31,63 @@ const theme = createMuiTheme({
 });
 
 class App extends Component {
+  state = {
+    inventory: [],
+  }
+
+  // Load the current inventory from the database
+  async componentDidMount() {
+    try {
+      db.collection('inventory').get().then(snapshot => {
+        var data = [];
+        if (snapshot.empty) {
+          console.log('no data');
+          return
+        }
+        snapshot.forEach(doc => {
+          console.log(Object.assign({}, doc.data(), {"doc_id": doc.id}));
+
+          // We want to save the document ID as well, so save it with the rest of the data fields
+          data.push(Object.assign({}, doc.data(), {"doc_id": doc.id}));
+        })
+        this.setState({
+          inventory: data
+        })
+      })
+    } catch (error) {
+      this.setState({
+        error
+      })
+    }
+  }
+
+  // This function removes an item from the database.
+  handleRemoveItem(targetItemName, targetDocID) {
+    // Remove this item from the database
+    db.collection('inventory').doc(targetDocID).delete().then(function() {
+      alert("Successfully deleted item " + targetItemName + " from your inventory. Refresh to see changes");
+    }).catch(function(error) {
+      alert("error removing document: " + error);
+    })
+
+    // TODO: Remove from the internal inventory as well (or launch refresh of page automatically), so updates 
+    // are visible in the inventory table.
+    // The following code doesn't work, but the idea is to filter out the deleted item.
+    // let oldInventory = this.state.inventory;
+    // this.setState({
+    //   inventory : oldInventory.filter(item => item.name !== targetItemName)
+    // })
+
+  }
 
   render() {
     return (
       <MuiThemeProvider theme={theme}>
         <div>
           <NavBar />
-          <Routes />
+          <Routes 
+            inventoryState={this.state}
+            handleRemoveItem={this.handleRemoveItem} />
           <Footer />
         </div>
       </MuiThemeProvider>
