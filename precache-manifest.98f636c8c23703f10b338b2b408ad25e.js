@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/chasing-zero-app/static/media/roboto-latin-400italic.d8bcbe72.woff2"
   },
   {
-    "revision": "930ffe09557de199f8a9",
+    "revision": "be5a125a378c36696def",
     "url": "/chasing-zero-app/static/css/main.e6d5b0fe.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = [
     "url": "/chasing-zero-app/static/js/runtime~main.9c06a8a5.js"
   },
   {
-    "revision": "bc833e725c137257c2c42a789845d82f",
-    "url": "/chasing-zero-app/static/media/roboto-latin-900italic.bc833e72.woff"
+    "revision": "7b770d6c53423deb1a8e49d3c9175184",
+    "url": "/chasing-zero-app/static/media/roboto-latin-900italic.7b770d6c.woff2"
   },
   {
     "revision": "2276e38b2db1a49785b5",
@@ -32,16 +32,16 @@ self.__precacheManifest = [
     "url": "/chasing-zero-app/static/media/roboto-latin-300.55536c8e.woff2"
   },
   {
-    "revision": "d704bb3d579b7d5e40880c75705c8a71",
-    "url": "/chasing-zero-app/static/media/roboto-latin-100italic.d704bb3d.woff"
-  },
-  {
     "revision": "6232f43d15b0e7a0bf0fe82e295bdd06",
     "url": "/chasing-zero-app/static/media/roboto-latin-100italic.6232f43d.woff2"
   },
   {
     "revision": "a1471d1d6431c893582a5f6a250db3f9",
     "url": "/chasing-zero-app/static/media/roboto-latin-300.a1471d1d.woff"
+  },
+  {
+    "revision": "d704bb3d579b7d5e40880c75705c8a71",
+    "url": "/chasing-zero-app/static/media/roboto-latin-100italic.d704bb3d.woff"
   },
   {
     "revision": "d69924b98acd849cdeba9fbff3f88ea6",
@@ -60,8 +60,8 @@ self.__precacheManifest = [
     "url": "/chasing-zero-app/static/media/roboto-latin-400.5d4aeb4e.woff2"
   },
   {
-    "revision": "930ffe09557de199f8a9",
-    "url": "/chasing-zero-app/static/js/main.4c33ec39.chunk.js"
+    "revision": "be5a125a378c36696def",
+    "url": "/chasing-zero-app/static/js/main.cdc9c0b8.chunk.js"
   },
   {
     "revision": "285467176f7fe6bb6a9c6873b3dad2cc",
@@ -76,10 +76,6 @@ self.__precacheManifest = [
     "url": "/chasing-zero-app/static/media/roboto-latin-500italic.510dec37.woff2"
   },
   {
-    "revision": "ffcc050b2d92d4b14a4fcb527ee0bcc8",
-    "url": "/chasing-zero-app/static/media/roboto-latin-500italic.ffcc050b.woff"
-  },
-  {
     "revision": "de8b7431b74642e830af4d4f4b513ec9",
     "url": "/chasing-zero-app/static/media/roboto-latin-500.de8b7431.woff"
   },
@@ -88,35 +84,39 @@ self.__precacheManifest = [
     "url": "/chasing-zero-app/static/media/roboto-latin-700.037d8304.woff2"
   },
   {
-    "revision": "010c1aeee3c6d1cbb1d5761d80353823",
-    "url": "/chasing-zero-app/static/media/roboto-latin-700italic.010c1aee.woff2"
-  },
-  {
-    "revision": "846d1890aee87fde5d8ced8eba360c3a",
-    "url": "/chasing-zero-app/static/media/roboto-latin-700italic.846d1890.woff"
-  },
-  {
-    "revision": "19b7a0adfdd4f808b53af7e2ce2ad4e5",
-    "url": "/chasing-zero-app/static/media/roboto-latin-900.19b7a0ad.woff2"
+    "revision": "ffcc050b2d92d4b14a4fcb527ee0bcc8",
+    "url": "/chasing-zero-app/static/media/roboto-latin-500italic.ffcc050b.woff"
   },
   {
     "revision": "cf6613d1adf490972c557a8e318e0868",
     "url": "/chasing-zero-app/static/media/roboto-latin-700.cf6613d1.woff"
   },
   {
+    "revision": "010c1aeee3c6d1cbb1d5761d80353823",
+    "url": "/chasing-zero-app/static/media/roboto-latin-700italic.010c1aee.woff2"
+  },
+  {
+    "revision": "19b7a0adfdd4f808b53af7e2ce2ad4e5",
+    "url": "/chasing-zero-app/static/media/roboto-latin-900.19b7a0ad.woff2"
+  },
+  {
+    "revision": "846d1890aee87fde5d8ced8eba360c3a",
+    "url": "/chasing-zero-app/static/media/roboto-latin-700italic.846d1890.woff"
+  },
+  {
     "revision": "8c2ade503b34e31430d6c98aa29a52a3",
     "url": "/chasing-zero-app/static/media/roboto-latin-900.8c2ade50.woff"
   },
   {
-    "revision": "7b770d6c53423deb1a8e49d3c9175184",
-    "url": "/chasing-zero-app/static/media/roboto-latin-900italic.7b770d6c.woff2"
+    "revision": "bc833e725c137257c2c42a789845d82f",
+    "url": "/chasing-zero-app/static/media/roboto-latin-900italic.bc833e72.woff"
   },
   {
     "revision": "2276e38b2db1a49785b5",
     "url": "/chasing-zero-app/static/css/2.dc6743c9.chunk.css"
   },
   {
-    "revision": "888a815357ae5a0fee566009b79ca17d",
+    "revision": "80eb1f3a6ae4cf4edc9cefa26d2473ce",
     "url": "/chasing-zero-app/index.html"
   }
 ];
