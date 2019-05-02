@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import InventoryTable from './InventoryTable';
 import Typography from '@material-ui/core/Typography';
 import 'typeface-roboto';
@@ -13,17 +13,20 @@ const styles = theme => ({
 });
 
 //TODO: This needs to be connected with Firebase to add/retrieve items
-function ManageInventory(props) { 
-  const { classes } = props;
+class ManageInventory extends Component { 
+  render() {
+    const { classes } = this.props;
+    const { inventory } = this.props;
 
-  return (
-    <div>
-        <Typography variant="h3" gutterBottom className={classes.title}>Add Items to your Inventory</Typography>
-        <AddInventoryItem />
-        <Typography variant="h3" gutterBottom className={classes.title}> Your Pantry </Typography>
-        <InventoryTable />
-    </div>
-  )
+    return (
+      <div>
+          <Typography variant="h3" gutterBottom className={classes.title}>Add Items to your Inventory</Typography>
+          <AddInventoryItem />
+          <Typography variant="h3" gutterBottom className={classes.title}> Your Pantry </Typography>
+          <InventoryTable inventory={inventory}/>
+      </div>
+    )
+  }
 }
 
 export default withStyles(styles)(ManageInventory);

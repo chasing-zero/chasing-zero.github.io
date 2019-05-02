@@ -31,13 +31,39 @@ const theme = createMuiTheme({
 });
 
 class App extends Component {
+  state = {
+    inventory: [],
+  }
+
+  // Load the current inventory from the database
+  async componentDidMount() {
+    try {
+      db.collection('inventory').get().then(snapshot => {
+        var data = [];
+        if (snapshot.empty) {
+          console.log('no data');
+          return
+        }
+        snapshot.forEach(doc => {
+          data.push(doc.data());
+        })
+        this.setState({
+          inventory: data
+        })
+      })
+    } catch (error) {
+      this.setState({
+        error
+      })
+    }
+  }
 
   render() {
     return (
       <MuiThemeProvider theme={theme}>
         <div>
           <NavBar />
-          <Routes />
+          <Routes inventoryState={this.state}/>
           <Footer />
         </div>
       </MuiThemeProvider>
