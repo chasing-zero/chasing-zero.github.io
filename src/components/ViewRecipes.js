@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import firebase from '../firebase-config'
 
+const db = firebase.firestore();
 
 
 /*Change this so Src image, and title are props*/
@@ -40,51 +42,45 @@ class RecipeSearchParameters extends Component{
         <h1> Search Parameters</h1>
         <p> TBD: Hook these up to the data base so they work</p>
       </div>
-    )
+    );
   }
 }
 
-/*very similar to DisplayRecipieList in ShoppingListBuilder.js consider combining */
-class DisplaySuggestedRecipieList extends Component{
-  constructor(props){
-    super(props);
-    this.state = {
-
-    };
-  }
-  render(){
-    console.log(this.props.recipiesToDisplay);
-    var recipieThumbs = this.props.recipiesToDisplay.map((elem,index,items)=>{
-                        return (<div>
-                                  <ItemThumbnail  imgFile = {elem.img}
-                                              caption = {elem.name}
-                                  />
-                                  <p>Because...</p>
-                                </div>);  
-                });
-    return(
-      <div>
-        <h1> Recipies to choose from </h1>
-        {recipieThumbs}
-      </div>
-    )
-  }
-}
+// /*very similar to DisplayRecipieList in ShoppingListBuilder.js consider combining */
+// class DisplaySuggestedRecipieList extends Component{
+//   constructor(props){
+//     super(props);
+//     this.state = {
+//       data:{}
+//     };
+//   }
+//   render(){
+//     return(
+//       <div>
+//         {this.state.data.name}
+//                                   <p>Because...</p>
+//       </div>
+//     );
+//   }
+// }
 
 export default class ViewRecipes extends Component { 
-  state = { 
-  }
+  
   render () {  
-      //temporarily hardcoded
-      var recipiesToDisplay = [{name : 'Chicken Alfredo', img : 'Images/ChickenAlfredo.jpg'}, 
-                            {name : 'Plain Pasta', img : 'Images/PlainPasta.png'}];                                 
+    
+      const { recipe } = this.props;                                 
       return (
         <div>
              <h1> View Recipes </h1>
              <p> This will display the tool that turns your Inventory to Recipies </p>
              <RecipeSearchParameters/>
-             <DisplaySuggestedRecipieList  recipiesToDisplay = {recipiesToDisplay}/>
-        </div>
-      )
+             <h1> Recipies to choose from </h1>
+             <div>
+             {recipe.map(r => (
+                <p>{r.name}</p>
+             ))}</div>
+              
+        </div>  
+      );
    }
 }
