@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import firebase from '../firebase-config';
+const db = firebase.firestore();
 
 /*Change this so Src image, and title are props*/
 function ItemThumbnail (props){
@@ -18,6 +20,7 @@ function ItemThumbnail (props){
       alt={props.caption}
     />
   {/*May want to include other stuff like link to more details*/}
+    <button type='button' onclick= "modifySelectedRecipies"> Add/Remove From List </button>
   </div>
 );
 }
@@ -64,11 +67,17 @@ class DisplayRecipieList extends Component{
   constructor(props){
     super(props);
     this.state = {
-
+      //selectedRecipies : localstorage.getItem('selectedRecipies')
     };
   }
   render(){
     console.log(this.props.recipiesToDisplay);
+    //change this to selected recipies to display
+    var selectedThumbs = this.props.recipiesToDisplay.map((elem,index,items)=>{
+                        return (<ItemThumbnail  imgFile = {elem.img}
+                                              caption = {elem.name}
+                                />);  
+                });
     var recipieThumbs = this.props.recipiesToDisplay.map((elem,index,items)=>{
                         return (<ItemThumbnail  imgFile = {elem.img}
                                               caption = {elem.name}
@@ -76,10 +85,12 @@ class DisplayRecipieList extends Component{
                 });
     return(
       <div>
-        <h1> Recipies to choose from </h1>
+        <h2> Recipies Selected: </h2>
+        {selectedThumbs}
+        <h2> Recipies to choose from </h2>
         {recipieThumbs}
       </div>
-    )
+    );
   }
 }
 
@@ -89,7 +100,8 @@ class RecipieList extends Component{
 
   render(){
     var recipiesToDisplay = [{name : 'Chicken Alfredo', img : 'Images/ChickenAlfredo.jpg'}, 
-                            {name : 'Plain Pasta', img : 'Images/PlainPasta.png'}];
+                            {name : 'Plain Pasta', img : 'Images/PlainPasta.png'},
+                            {name : 'Chicken and Rice', img : 'Images/ChickenAndRice.png'}];
     return(
       <div>
         <SearchParameters/>
@@ -102,15 +114,20 @@ class RecipieList extends Component{
 
 export default class ShoppingListBuilder extends Component { 
   /* will hold ingredients and recepies selected so far*/
-  state = { 
+  constructor(props){
+    super(props)
+    this.state = { 
     /*hardcoding ingredients for awhile*/
-    items : ['chicken', 'pasta', 'Alfredo']
-  
+    items : ['chicken', 'pasta', 'Alfredo'],
+    ingredientsSelected : [],
+    recipiesToDisplay : []
+    }
   }
-  
-  
   render () {   
-      var itemsForList = this.state.items;                                
+      var itemsForList = this.state.items;  
+      //Calculate items to display, update state
+      //recipies selected = getSelectedRecipies
+      //ingredients = combineSelectedIngredients()                              
       return (
         <div>
           {/*Page Div, so Header and Body div do not cause an error*/}
