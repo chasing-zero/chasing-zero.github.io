@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
-import firebase from '../firebase-config'
+import firebase from '../firebase-config';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 
-const db = firebase.firestore();
 
 
 /*Change this so Src image, and title are props*/
@@ -67,7 +74,7 @@ class RecipeSearchParameters extends Component{
 export default class ViewRecipes extends Component { 
   
   render () {  
-    
+      const { classes } = this.props;
       const { recipe } = this.props;                                 
       return (
         <div>
@@ -75,10 +82,34 @@ export default class ViewRecipes extends Component {
              <p> This will display the tool that turns your Inventory to Recipies </p>
              <RecipeSearchParameters/>
              <h1> Recipies to choose from </h1>
-             <div>
-             {recipe.map(r => (
-                <p>{r.name}</p>
-             ))}</div>
+
+             <Paper>
+        <Table>
+
+          <TableHead>
+            <TableRow>
+              <TableCell>Recipe</TableCell>
+              <TableCell>Ingredients</TableCell>
+             
+            </TableRow>
+          </TableHead>
+
+          <TableBody>
+            {recipe.map(n => (
+          
+                <TableRow key={n.id}>
+                <TableCell component="th" scope="row">
+                  {n.name}
+                </TableCell>
+                <TableCell>
+                {n.ingredients.toString()}
+                </TableCell>
+              </TableRow>
+             ))}
+          </TableBody> 
+
+        </Table>
+      </Paper>
               
         </div>  
       );
