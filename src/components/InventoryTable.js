@@ -44,7 +44,7 @@ class InventoryTable extends Component {
     handleRemoveItem(item.name, item.doc_id);
 
     // Notify main app that the database was changed => will refresh inventory state to be re-rendered
-    this.sleepFor(500);    
+    this.sleepFor(750);    
     handleInventoryItemsChanged();
   }
 

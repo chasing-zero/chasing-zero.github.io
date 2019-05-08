@@ -34,13 +34,12 @@ function stringToDate(_date,_format,_delimiter)
 
 // Convert a Date object into a String representation -- not actually used, but I'll keep 
 // the utility function for now.
-function convertDateObjectToString(dateObject) {
+function dateToString(dateObject) {
   var m = new String(dateObject.getMonth() + 1);
-  alert("m length is " + m.length);
   if (m.length === 1) {
       m = "0" + m;
   }
-  var d = new String(dateObject.getDate() + 1);
+  var d = new String(dateObject.getDate());
   if (d.length === 1) {
       d = "0" + d;
   }
