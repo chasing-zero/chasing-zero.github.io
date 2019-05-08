@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
 import EmailFormDialog from './EmailFormDialog';
 import PhoneFormDialog from './PhoneFormDialog';
+
+
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 const styles = theme => ({
   snackbar: {
@@ -18,7 +20,7 @@ const styles = theme => ({
   },
 });
 
-// Convert a String to a Date representing that String
+// Convert a date from String representation into a Date object
 function stringToDate(_date,_format,_delimiter)
 {
   var formatLowerCase=_format.toLowerCase();
@@ -31,6 +33,23 @@ function stringToDate(_date,_format,_delimiter)
   month-=1;
   var formatedDate = new Date(dateItems[yearIndex],month,dateItems[dayIndex]);
   return formatedDate;
+}
+
+// Convert a Date object into a String representation -- not actually used, but I'll keep 
+// the utility function for now.
+function convertDateObjectToString(dateObject) {
+  var m = new String(dateObject.getMonth() + 1);
+  alert("m length is " + m.length);
+  if (m.length === 1) {
+      m = "0" + m;
+  }
+  var d = new String(dateObject.getDate() + 1);
+  if (d.length === 1) {
+      d = "0" + d;
+  }
+  var y = new String(dateObject.getYear() + 1900);
+
+  return m + "/" + d + "/" + y;
 }
 
 // Given a list of items, calculate the items expiring soon
@@ -54,17 +73,21 @@ class Landing extends Component {
   constructor(props) {
     super(props);
 
+    // Get the date that's exactly one week from the current date
+    var dateObj = new Date();
+    dateObj.setDate(dateObj.getDate() + 7);
     this.state = {
-      boundaryDate: "05/16/2019"
+      boundaryDate: dateObj,
     }
 
     this.handleChange = this.handleChange.bind(this);
   }
 
   // If the field is changed, update state with the new value
-  handleChange(event) {
-    const name = event.target.name;
-    this.setState({ [name]: event.target.value });
+  handleChange(date) {
+    this.setState({
+      boundaryDate: date
+    });
   }
 
   render () {  
@@ -72,7 +95,7 @@ class Landing extends Component {
     const { inventory } = this.props;    
 
     // Calculate the items expiring soon, based on the current boundary date
-    var boundaryDateObj = stringToDate(this.state.boundaryDate, "mm/dd/yyyy", "/");
+    var boundaryDateObj = this.state.boundaryDate;
     const itemsExpiringSoon = calculateItemsExpiringSoon(inventory, boundaryDateObj);
 
     console.log(itemsExpiringSoon);
@@ -80,17 +103,11 @@ class Landing extends Component {
       <div className={classes.overall}>
           <h1> Welcome to Chasing Zero </h1>
           <p>Showing items expiring by the following date (default = 1 week):</p> 
-          <form>
-            <FormControl>
-              <InputLabel>Boundary Date</InputLabel>
-              <Input
-                id="boundaryDate"
-                name="boundaryDate"
-                type="text"
-                value={this.state.boundaryDate}
-                onChange={this.handleChange} />
-            </FormControl>
-          </form>
+          <DatePicker 
+            selected={this.state.boundaryDate}
+            onChange={this.handleChange}
+          />
+
           <div>
             {
               itemsExpiringSoon.map(inventoryItem =>
