@@ -23,7 +23,10 @@ class Routes extends Component {
                   handleRemoveItem = {this.props.handleRemoveItem} />
         } />
         <Route exact path='/ShoppingListBuilder' component={ShoppingListBuilder} />
-        <Route exact path='/ViewRecipes' component={ViewRecipes} />
+        <Route exact path='/ViewRecipes' render={
+          () => <ViewRecipes 
+                  recipe={this.props.recipeState} />
+        }/>
       </Switch>
     );
   }
