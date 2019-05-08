@@ -4,7 +4,7 @@ import firebase from './firebase-config';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import Routes from './components/Routes';
-import green from '@material-ui/core/colors/green';
+import blueGrey from '@material-ui/core/colors/blueGrey';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 // I'm not exactly sure how the theme works, but these colors should look OK?
@@ -22,7 +22,7 @@ const theme = createMuiTheme({
       // contrastText: will be calculated to contrast with palette.primary.main
       contrastText: '#FFFFFF'
     },
-    secondary: green,
+    secondary: blueGrey,
   },
 
   status: {

@@ -4,6 +4,8 @@ import SnackbarContent from '@material-ui/core/SnackbarContent';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
+import EmailFormDialog from './EmailFormDialog';
+import PhoneFormDialog from './PhoneFormDialog';
 
 const styles = theme => ({
   snackbar: {
@@ -101,6 +103,16 @@ class Landing extends Component {
               )
             }
           </div>
+          
+          <div style={{marginTop: "50px"}}>
+            <h2>Want to get daily notifications of expiring foods?</h2>
+            <PhoneFormDialog />
+            <p></p>
+            <EmailFormDialog />
+            <p> We will never share your information with any third party. </p>
+          </div>
+          
+
       </div>
     );
    }
