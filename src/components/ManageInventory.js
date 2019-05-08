@@ -18,15 +18,18 @@ class ManageInventory extends Component {
     const { classes } = this.props;
     const { inventory } = this.props;
     const { handleRemoveItem } = this.props;
+    const { handleInventoryItemsChanged } = this.props;
 
     return (
       <div>
           <Typography variant="h3" gutterBottom className={classes.title}>Add Items to your Inventory</Typography>
-          <AddInventoryItem />
+          <AddInventoryItem 
+            handleInventoryItemsChanged={handleInventoryItemsChanged} />
           <Typography variant="h3" gutterBottom className={classes.title}> Your Pantry </Typography>
           <InventoryTable 
             inventory={inventory}
-            handleRemoveItem={handleRemoveItem} />
+            handleRemoveItem={handleRemoveItem} 
+            handleInventoryItemsChanged={handleInventoryItemsChanged}/>
       </div>
     )
   }

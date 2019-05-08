@@ -27,18 +27,31 @@ const styles = {
 
 class InventoryTable extends Component {
 
+  // This is a (really bad) function to wait X milliseconds before continuing execution
+  sleepFor(sleepDuration) {
+    var now = new Date().getTime();
+    while (new Date().getTime() < now + sleepDuration) {}
+  }
+
   // This function calls the function provided from App.js, passing in 
   // the item name and document ID (in Firebase) to be deleted.
-  handleClick(item, e) {
+  async handleClick(item, e) {
+    const {handleInventoryItemsChanged} = this.props;
+
+    // Remove the item from the database
     e.preventDefault();
     const { handleRemoveItem } = this.props;
     handleRemoveItem(item.name, item.doc_id);
 
+    // Notify main app that the database was changed => will refresh inventory state to be re-rendered
+    this.sleepFor(750);    
+    handleInventoryItemsChanged();
   }
 
   render() {
     const { classes } = this.props;
     const { inventory } = this.props;
+    console.log(inventory);
 
     return (
       <Paper className={classes.root}>

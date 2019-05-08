@@ -4,7 +4,7 @@ import firebase from './firebase-config';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import Routes from './components/Routes';
-import green from '@material-ui/core/colors/green';
+import blueGrey from '@material-ui/core/colors/blueGrey';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 // I'm not exactly sure how the theme works, but these colors should look OK?
@@ -22,7 +22,7 @@ const theme = createMuiTheme({
       // contrastText: will be calculated to contrast with palette.primary.main
       contrastText: '#FFFFFF'
     },
-    secondary: green,
+    secondary: blueGrey,
   },
 
   status: {
@@ -87,23 +87,40 @@ class App extends Component {
     }
   }
 
+  // An item has been added/removed to the database, so update inventory state to represent the new collection
+  handleInventoryItemsChanged = () => {
+    try {
+      db.collection('inventory').get().then(snapshot => {
+        var data = [];
+        if (snapshot.empty) {
+          console.log('no data');
+          return
+        }
+        snapshot.forEach(doc => {
+          console.log(Object.assign({}, doc.data(), {"doc_id": doc.id}));
+
+          // We want to save the document ID as well, so save it with the rest of the data fields
+          data.push(Object.assign({}, doc.data(), {"doc_id": doc.id}));
+        })
+        this.setState({
+          inventory: data
+        })
+      })
+    } catch (error) {
+      this.setState({
+        error
+      })
+    }
+  }
+
   // This function removes an item from the database.
   handleRemoveItem(targetItemName, targetDocID) {
     // Remove this item from the database
     db.collection('inventory').doc(targetDocID).delete().then(function() {
-      alert("Successfully deleted item " + targetItemName + " from your inventory. Refresh to see changes");
+      console.log("Successfully deleted item " + targetItemName + " from inventory");
     }).catch(function(error) {
       alert("error removing document: " + error);
     })
-
-    // TODO: Remove from the internal inventory as well (or launch refresh of page automatically), so updates 
-    // are visible in the inventory table.
-    // The following code doesn't work, but the idea is to filter out the deleted item.
-    // let oldInventory = this.state.inventory;
-    // this.setState({
-    //   inventory : oldInventory.filter(item => item.name !== targetItemName)
-    // })
-
   }
 
   render() {
@@ -115,7 +132,8 @@ class App extends Component {
 
             recipeState={this.state.recipe}
             inventoryState={this.state}
-            handleRemoveItem={this.handleRemoveItem} />
+            handleRemoveItem={this.handleRemoveItem} 
+            handleInventoryItemsChanged={this.handleInventoryItemsChanged}/>
 
           <Footer />
         </div>
