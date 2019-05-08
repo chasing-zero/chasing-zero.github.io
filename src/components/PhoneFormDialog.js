@@ -44,6 +44,7 @@ export default class EmailFormDialog extends React.Component {
               label="Phone Number"
               type="text"
               fullWidth
+              required
             />
           </DialogContent>
           <DialogActions>
