@@ -3,10 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 import EmailFormDialog from './EmailFormDialog';
 import PhoneFormDialog from './PhoneFormDialog';
-
-
 import DatePicker from "react-datepicker";
-
 import "react-datepicker/dist/react-datepicker.css";
 
 const styles = theme => ({
