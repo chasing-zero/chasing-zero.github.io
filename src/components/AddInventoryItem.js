@@ -27,12 +27,16 @@ class AddInventoryItem extends Component {
   // Set some default values - the state will get updated as we edit the form
   constructor(props) {
     super(props);
+
+    // Choose random number for next item ID
+    var nextIdNumber = Math.floor(Math.random() * 1500) + 1;
+
+    // Set initial state
     this.state = {
       name: '',
       boughtOn: '',
       expiresOn: '',
-      // TODO: Figure out how to get the next ID number (hard-coded for now)
-      id: 10
+      id: nextIdNumber,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -47,6 +51,8 @@ class AddInventoryItem extends Component {
 
   // When we submit the form, add the item to the inventory
   handleSubmit(event) {
+    const { handleInventoryItemsChanged } = this.props;
+
     event.preventDefault();
     var data = {
       name: this.state.name,
@@ -56,7 +62,20 @@ class AddInventoryItem extends Component {
     }
 
     db.collection('inventory').add(data);
-    alert(this.state.name + " was added to your inventory. Refresh to see results");
+
+     // Choose random number for the next item ID
+     var nextIdNumber = Math.floor(Math.random() * 1500) + 1;
+
+    // Clear out the form
+    this.setState({
+      name: "",
+      boughtOn: "",
+      expiresOn: "",
+      id: nextIdNumber,
+    });
+    
+    // Update main app that inventory items were changed => will refresh inventory state to be re-rendered
+    handleInventoryItemsChanged();
   }
 
   // This method generates the form to add items to a user's inventory
