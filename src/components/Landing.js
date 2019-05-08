@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
+import FormControl from '@material-ui/core/FormControl';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
 
 const styles = theme => ({
   snackbar: {
@@ -13,6 +16,7 @@ const styles = theme => ({
   },
 });
 
+// Convert a String to a Date representing that String
 function stringToDate(_date,_format,_delimiter)
 {
   var formatLowerCase=_format.toLowerCase();
@@ -27,7 +31,10 @@ function stringToDate(_date,_format,_delimiter)
   return formatedDate;
 }
 
+// Given a list of items, calculate the items expiring soon
 function calculateItemsExpiringSoon(items, boundaryDate) {
+  items.sort((a,b) => (a.name - b.name));
+
   // Filter out items that expire before May 2nd, 2019
   var itemsFiltered = items.filter(
     item => {
@@ -40,18 +47,48 @@ function calculateItemsExpiringSoon(items, boundaryDate) {
 }
 
 class Landing extends Component { 
+
+  // Set default boundary date and bind the handleChange() function
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      boundaryDate: "05/16/2019"
+    }
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  // If the field is changed, update state with the new value
+  handleChange(event) {
+    const name = event.target.name;
+    this.setState({ [name]: event.target.value });
+  }
+
   render () {  
     const { classes } = this.props;      
     const { inventory } = this.props;    
 
-    // Calculate the items expiring soon
-    const boundaryDate = stringToDate("05/10/2019", "mm/dd/yyyy", "/");
-    const itemsExpiringSoon = calculateItemsExpiringSoon(inventory, boundaryDate);
+    // Calculate the items expiring soon, based on the current boundary date
+    var boundaryDateObj = stringToDate(this.state.boundaryDate, "mm/dd/yyyy", "/");
+    const itemsExpiringSoon = calculateItemsExpiringSoon(inventory, boundaryDateObj);
+
     console.log(itemsExpiringSoon);
     return (
       <div className={classes.overall}>
           <h1> Welcome to Chasing Zero </h1>
-          <p> Inventory Items expiring soon: </p>
+          <p>Showing items expiring by the following date (default = 1 week):</p> 
+          <form>
+            <FormControl>
+              <InputLabel>Boundary Date</InputLabel>
+              <Input
+                id="boundaryDate"
+                name="boundaryDate"
+                type="text"
+                value={this.state.boundaryDate}
+                onChange={this.handleChange} />
+            </FormControl>
+          </form>
           <div>
             {
               itemsExpiringSoon.map(inventoryItem =>
