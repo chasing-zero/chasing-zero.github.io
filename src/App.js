@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import Routes from './components/Routes';
 import blueGrey from '@material-ui/core/colors/blueGrey';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import classNames from 'classnames';
 
 // I'm not exactly sure how the theme works, but these colors should look OK?
 const db = firebase.firestore();
