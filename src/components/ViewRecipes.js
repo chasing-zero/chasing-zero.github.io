@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
-import firebase from '../firebase-config'
+import firebase from '../firebase-config';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import MenuItem from '@material-ui/core/MenuItem';
+import TextField from '@material-ui/core/TextField';
+import classNames from 'classnames';
 
 const db = firebase.firestore();
-
 
 /*Change this so Src image, and title are props*/
 function ItemThumbnail (props){
@@ -64,21 +74,131 @@ class RecipeSearchParameters extends Component{
 //   }
 // }
 
-export default class ViewRecipes extends Component { 
+
+
+function ValidRecipes(props){
+  // const recipes = props.recipes;
+  // var recipe_promise = new Promise(function(){
+  //   return recipes.filter(recipe => check_valid_recipe(recipe.ingredients));
+  // });
+  //const filtered_recipes = recipes.filter(recipe => check_valid_recipe(recipe.ingredients));
+ 
+  return (
+    <TableBody>
+    {props.filtered_recipes.map(n => (
+          
+                <TableRow key={n.id}>
+                <TableCell component="th" scope="row">
+                  {n.name}
+                </TableCell>
+                <TableCell>
+                {n.ingredients.toString()}
+                </TableCell>
+              </TableRow>
+             ))}
+      </TableBody>
+  )
   
+}
+
+export default class ViewRecipes extends Component { 
+  constructor(props){
+    super(props);
+    this.state = {
+      recipes: this.props.recipe,
+      inventory: this.props.inventory,
+      filtered_recipes: []//this.props.recipe.filter(recipe => check_valid_recipe(recipe.ingredients))
+    };
+    //console.log(this.state.filtered_recipes);
+  }
+
+  check_valid_recipe(ingredients){
+    console.log('test');
+    let missing_ingredient_count = 0;
+    var check = true;
+    for (let i = 0; i < ingredients.length; i++){
+      let ingredient = ingredients[i];
+      if (!(this.props.inventory.map(item => item.name).includes(ingredient))){
+        //console.log('recipe ingredient not in inventory');
+        console.log(ingredient);
+        console.log(missing_ingredient_count);
+        missing_ingredient_count++;
+        if (missing_ingredient_count > 1){
+          console.log('failed');
+          check = false;
+          return false;
+        }
+      } 
+       
+    } 
+    return true
+  }
+
+  componentDidMount(){
+    let filtered = []
+    for (let i=0; i<this.props.recipe.length; i++){
+      let recipe = this.props.recipe[i];
+      if (this.check_valid_recipe(recipe.ingredients)) {
+        filtered.push(recipe);
+      }
+    }
+    this.setState({
+      filtered_recipes: filtered
+    })
+     
+  }
+
+  componentDidUpdate(prevProps){
+    let filtered = []
+    if (prevProps.recipe != this.props.recipe){
+      console.log(this.props.recipe);
+      console.log(this.props.inventory);
+      for (let i=0; i<this.props.recipe.length; i++){
+        let recipe = this.props.recipe[i];
+        if (this.check_valid_recipe(recipe.ingredients)) {
+          filtered.push(recipe);
+        }
+      }
+      this.setState({
+        recipes: this.props.recipe,
+        inventory: this.props.inventory,
+        filtered_recipes: filtered
+      })
+    }  
+  }
+
   render () {  
-    
-      const { recipe } = this.props;                                 
+      //const { classes } = this.props.classes;
+      //const { recipe } = this.props.recipe;                                
       return (
-        <div>
+        <div style={{margin: '30px'}}>
              <h1> View Recipes </h1>
-             <p> This will display the tool that turns your Inventory to Recipies </p>
-             <RecipeSearchParameters/>
-             <h1> Recipies to choose from </h1>
-             <div>
-             {recipe.map(r => (
-                <p>{r.name}</p>
-             ))}</div>
+             <TextField
+                id="outlined-search"
+                label="Search recipe"
+                type="search"
+                margin="normal"
+                variant="outlined"
+              />
+             <h1> Recipes to choose from </h1>
+
+            <Paper >
+        <Table >
+
+          <TableHead>
+            <TableRow>
+              <TableCell>Recipe</TableCell>
+              <TableCell>Ingredients</TableCell>
+             
+            </TableRow>
+          </TableHead>
+
+          
+          <ValidRecipes filtered_recipes={this.state.filtered_recipes}/>
+          
+
+        </Table>
+      </Paper>
               
         </div>  
       );

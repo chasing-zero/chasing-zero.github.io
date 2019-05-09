@@ -26,7 +26,8 @@ class Routes extends Component {
         <Route exact path='/ShoppingListBuilder' component={ShoppingListBuilder} />
         <Route exact path='/ViewRecipes' render={
           () => <ViewRecipes 
-                  recipe={this.props.recipeState} />
+                  recipe={this.props.recipeState} 
+                  inventory={this.props.inventoryState.inventory}/>
         }/>
       </Switch>
     );
