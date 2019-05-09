@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -24,7 +24,6 @@ const styles = {
       width: 20,
   },
 };
-
 
 class InventoryTable extends Component {
 
@@ -54,39 +53,40 @@ class InventoryTable extends Component {
     const { inventory } = this.props;
     console.log(inventory);
 
-function InventoryTable(props) {
-  const { classes } = props;
+    return (
+      <Paper className={classes.root}>
+        <Table className={classes.table}>
 
-  return (
-    <Paper className={classes.root}>
-      <Table className={classes.table}>
-        <TableHead>
-          <TableRow>
-            <TableCell>Food Item</TableCell>
-            <TableCell align="right">Bought On</TableCell>
-            <TableCell align="right">Expires On</TableCell>
-            <TableCell align="right">Remove</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map(n => (
-            <TableRow key={n.id}>
-              <TableCell component="th" scope="row">
-                {n.name}
-              </TableCell>
-              <TableCell align="right">{n.buyDate}</TableCell>
-              <TableCell align="right">{n.expireDate}</TableCell>
-              <TableCell className={classes.icon} >
-                <IconButton color="inherit" align="right">
-                    <DeleteIcon />
-                </IconButton>
-              </TableCell>
+          <TableHead>
+            <TableRow>
+              <TableCell>Food Item</TableCell>
+              <TableCell align="right">Bought On</TableCell>
+              <TableCell align="right">Expires On</TableCell>
+              <TableCell align="right">Remove</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </Paper>
-  );
+          </TableHead>
+
+          <TableBody>
+            {inventory.map(n => (
+              <TableRow key={n.id}>
+                <TableCell component="th" scope="row">
+                  {n.name}
+                </TableCell>
+                <TableCell align="right">{n.boughtOn}</TableCell>
+                <TableCell align="right">{n.expiresOn}</TableCell>
+                <TableCell className={classes.icon} >
+                  <IconButton onClick={this.handleClick.bind(this, n)} color="inherit" align="right" type="submit">
+                      <DeleteIcon />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody> 
+
+        </Table>
+      </Paper>
+    );
+  }
 }
 
 InventoryTable.propTypes = {
