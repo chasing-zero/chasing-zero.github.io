@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import firebase from '../firebase-config';
 import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -9,12 +10,15 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
 import axios from 'axios';
 
 const db = firebase.firestore();
 
 var allRecipes = [{name : 'Chicken Alfredo', img : 'Images/ChickenAlfredo.jpg', 
                               ingredients:['chicken','Alfredo','pasta']}, 
+                            {name : 'Oatmeal', ingredients:'Oats'},
                             {name : 'Plain Pasta', img : 'Images/PlainPasta.png',
                               ingredients:['Butter','pasta']},
                             {name : 'Chicken and Rice', img : 'Images/ChickenAndRice.png',
@@ -53,7 +57,7 @@ function ShoppingList (props){
   {/*decide if we want the title in the component or div*/}
   <h2>List So Far:</h2>
   {/*TBD: Export ability*/}
-  <button type="button">TBD: Export</button>
+  <button type="button">Export List</button>
   {/*products*/}
   <Paper >
         <Table >
@@ -82,15 +86,20 @@ function ShoppingList (props){
 
 class SearchParameters extends Component{
   /* will hold selected filters*/
-  state = {
-  
-  }
+
   render(){
     return(
       <div>
         <h1> Search Parameters</h1>
-        <button type='button'> Vegiterian </button> 
-        <button type='button'> Gluten Free </button> 
+        <InputLabel htmlFor="item">Find Recipes With: </InputLabel>
+        <Input id="item" name="item" autoComplete="item" autoFocus />
+        <button type='button'> Search </button>
+        <div>
+        <input type='checkbox' name ='Vegiterian' />Vegitarian
+        <input type='checkbox' name ='Vegiterian' />Vegan
+        <input type='checkbox' name ='Gluten Free' />Gluten Free
+        <input type='checkbox' name ='Gluten Free' />Paleo Diet
+        </div>
       </div>
     );
   }
@@ -128,13 +137,19 @@ class DisplayRecipieList extends Component{
     var recipes = JSON.parse(localStorage.getItem('selectedRecipes'));
     console.log(recipes);
     //recipes appears to be null
-    // recipes.filter(function(elem,index,recipes){
-    //   return false == recipe.name.equals(elem.name);
-    // });
+    var newSelection = recipes.filter(function(elem,index,recipes){
+      console.log(elem);
+      console.log(recipe.name);
+      var recipeName = recipe.name.valueOf();
+      console.log(recipeName);
+      console.log(elem.name.valueOf());
+      console.log(recipeName == (elem.name.valueOf()));
+      return recipeName !== (elem.name.valueOf());
+    });
     // var idx = recipes.indexOf(recipe);
     // if(idx !== -1) recipes.splice(idx,1);
-    localStorage.setItem('selectedRecipes',JSON.stringify(recipes));
-    this.setState({'selectedRecipes': recipes});
+    localStorage.setItem('selectedRecipes',JSON.stringify(newSelection));
+    this.setState({'selectedRecipes': newSelection});
     console.log(recipes);
   }
 
@@ -224,10 +239,10 @@ class RecipieList extends Component{
 
   render(){
     var recipesToDisplay = allRecipes;
-    localStorage.setItem('selectedRecipes', JSON.stringify([
-      {name : 'Oatmeal', ingredients:'Oats'},
-      {name : 'Chicken and Rice', img : 'Images/ChickenAndRice.png',
-                              ingredients:['chicken','Rice','Salt','Pepper']}]));
+    // localStorage.setItem('selectedRecipes', JSON.stringify([
+    //   {name : 'Oatmeal', ingredients:'Oats'},
+    //   {name : 'Chicken and Rice', img : 'Images/ChickenAndRice.png',
+    //                           ingredients:['chicken','Rice','Salt','Pepper']}]));
     // axios.get('https://api.edamam.com/search',{
     //   params:{
     //     q:'chicken',
@@ -270,13 +285,6 @@ export default class ShoppingListBuilder extends Component {
     }
   }
 
-  getIngredients(recipes){
-    return( recipes.map((elem)=>{
-      console.log(elem.ingredients.toString());
-      return elem.ingredients;
-    }));
-  }
-
   componentDidMount(){
     //can load things when this component renders here.
     var recipeList = []
@@ -286,8 +294,8 @@ export default class ShoppingListBuilder extends Component {
 
   render () {   
       console.log(JSON.parse(localStorage.getItem('selectedRecipes')));
-      var itemsForList = this.getIngredients(JSON.parse(localStorage.getItem('selectedRecipes')));  
-      console.log(itemsForList);
+      //var itemsForList = this.getIngredients(JSON.parse(localStorage.getItem('selectedRecipes')));  
+      //console.log(itemsForList);
       // window.addEventListener("storage",()=>{
       //   this.setState({recipesSelected: JSON.parse(localStorage.getItem('selectedRecipes'))})
       // });
@@ -300,8 +308,9 @@ export default class ShoppingListBuilder extends Component {
           {/*Page Div, so Header and Body div do not cause an error*/}
           <div>
               {/*Header Div*/}
-               <h1> Shopping List Builder </h1>
-               <p> This will display the tool that turns recepies into a shopping list. </p>
+              <Typography variant="h3" gutterBottom >Shopping List Builder</Typography>
+               <h1>  </h1>
+               <p> Use this tool to turn recepies into a shopping list. </p>
           </div>
           {/*<div className="sideColumnRight" >
                       <ShoppingList title='Shopping List So Far' items = {itemsForList}/>
