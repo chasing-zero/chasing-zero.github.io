@@ -12,7 +12,9 @@ class Routes extends Component {
   render() {
     return (
       <Switch>
-        <Route exact path='/' component={Landing} />
+        <Route exact path='/' render={
+          () => <Landing inventory={this.props.inventoryState.inventory}/>
+        } />
         <Route exact path='/SignUp' component={SignUp} />
         <Route exact path='/SignIn' component={SignIn} />
 
@@ -23,7 +25,11 @@ class Routes extends Component {
                   handleInventoryItemsChanged={this.props.handleInventoryItemsChanged}/>
         } />
         <Route exact path='/ShoppingListBuilder' component={ShoppingListBuilder} />
-        <Route exact path='/ViewRecipes' component={ViewRecipes} />
+        <Route exact path='/ViewRecipes' render={
+          () => <ViewRecipes 
+                  recipe={this.props.recipeState} 
+                  inventory={this.props.inventoryState.inventory}/>
+        }/>
       </Switch>
     );
   }
