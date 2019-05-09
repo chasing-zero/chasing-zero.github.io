@@ -75,10 +75,10 @@ export default class ViewRecipes extends Component {
              <p> This will display the tool that turns your Inventory to Recipies </p>
              <RecipeSearchParameters/>
              <h1> Recipies to choose from </h1>
-             <div>
-             {recipe.map(r => (
-                <p>{r.name}</p>
-             ))}</div>
+             {/*<div>
+                          {recipe.map(r => (
+                             <p>{r.name}</p>
+                          ))}</div>*/}
               
         </div>  
       );

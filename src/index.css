@@ -29,6 +29,12 @@ code {
     padding: 20px;
 }
 
+.sideColumnLeft{
+    float: left;
+    width: 75%;
+    padding: 20px;
+}
+
 /* Clear floats after the columns */
 .row:after {
   content: "";
