@@ -25,20 +25,34 @@ const styles = {
   },
 };
 
-let id = 0;
-function createData(name, buyDate, expireDate) {
-  id += 1;
-  return { id, name, buyDate, expireDate };
-}
 
-//TODO: This will eventually need to pull data from Firebase
-const data = [
-  createData('Carrots', '4/7/2019', '4/17/2019'),
-  createData('Potatoes', '4/7/2019', '4/20/2019'),
-  createData('French Bread', '4/7/2019', '4/11/2019'),
-  createData('Chicken Breast', '4/5/2019', '4/13/2019'),
-  createData('Salmon', '4/4/2019', '4/10/2019'),
-];
+class InventoryTable extends Component {
+
+  // This is a (really bad) function to wait X milliseconds before continuing execution
+  sleepFor(sleepDuration) {
+    var now = new Date().getTime();
+    while (new Date().getTime() < now + sleepDuration) {}
+  }
+
+  // This function calls the function provided from App.js, passing in 
+  // the item name and document ID (in Firebase) to be deleted.
+  async handleClick(item, e) {
+    const {handleInventoryItemsChanged} = this.props;
+
+    // Remove the item from the database
+    e.preventDefault();
+    const { handleRemoveItem } = this.props;
+    handleRemoveItem(item.name, item.doc_id);
+
+    // Notify main app that the database was changed => will refresh inventory state to be re-rendered
+    this.sleepFor(750);    
+    handleInventoryItemsChanged();
+  }
+
+  render() {
+    const { classes } = this.props;
+    const { inventory } = this.props;
+    console.log(inventory);
 
 function InventoryTable(props) {
   const { classes } = props;
