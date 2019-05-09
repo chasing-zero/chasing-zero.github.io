@@ -10,6 +10,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
+import classNames from 'classnames';
 
 const db = firebase.firestore();
 
@@ -170,7 +171,7 @@ export default class ViewRecipes extends Component {
       //const { classes } = this.props.classes;
       //const { recipe } = this.props.recipe;                                
       return (
-        <div>
+        <div style={{margin: '30px'}}>
              <h1> View Recipes </h1>
              <TextField
                 id="outlined-search"
@@ -181,8 +182,8 @@ export default class ViewRecipes extends Component {
               />
              <h1> Recipes to choose from </h1>
 
-             <Paper>
-        <Table>
+            <Paper >
+        <Table >
 
           <TableHead>
             <TableRow>
