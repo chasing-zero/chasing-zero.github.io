@@ -17,18 +17,15 @@ class Routes extends Component {
         } />
         <Route exact path='/SignUp' component={SignUp} />
         <Route exact path='/SignIn' component={SignIn} />
-
         <Route exact path='/ManageInventory' render={
           () => <ManageInventory 
                   inventory={this.props.inventoryState.inventory} 
-                  handleRemoveItem = {this.props.handleRemoveItem} 
-                  handleInventoryItemsChanged={this.props.handleInventoryItemsChanged}/>
+                  handleRemoveItem = {this.props.handleRemoveItem} />
         } />
         <Route exact path='/ShoppingListBuilder' component={ShoppingListBuilder} />
         <Route exact path='/ViewRecipes' render={
           () => <ViewRecipes 
-                  recipe={this.props.recipeState} 
-                  inventory={this.props.inventoryState.inventory}/>
+                  recipe={this.props.recipeState} />
         }/>
       </Switch>
     );

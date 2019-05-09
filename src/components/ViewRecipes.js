@@ -199,7 +199,6 @@ export default class ViewRecipes extends Component {
 
         </Table>
       </Paper>
-              
         </div>  
       );
    }

@@ -1,3 +1,4 @@
+
 import React, {Component} from 'react';
 import InventoryTable from './InventoryTable';
 import Typography from '@material-ui/core/Typography';
@@ -36,3 +37,4 @@ class ManageInventory extends Component {
 }
 
 export default withStyles(styles)(ManageInventory);
+
