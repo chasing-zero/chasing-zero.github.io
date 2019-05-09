@@ -96,7 +96,7 @@ class SearchParameters extends Component{
         <button type='button'> Search </button>
         <div>
         <input type='checkbox' name ='Vegiterian' />Vegitarian
-        <input type='checkbox' name ='Vegiterian' />Vegan
+        <input type='checkbox' name ='Vegan' />Vegan
         <input type='checkbox' name ='Gluten Free' />Gluten Free
         <input type='checkbox' name ='Gluten Free' />Paleo Diet
         </div>
