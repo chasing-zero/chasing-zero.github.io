@@ -159,6 +159,7 @@ class DisplayRecipieList extends Component{
     var selectedRecipes = JSON.parse(localStorage.getItem('selectedRecipes'));
     //var selectedRecipes = this.state.selectedRecipes;
     console.log(this.state.selectedRecipes);
+    //hi
     var itemsForList = this.getIngredients(selectedRecipes);
     return(
       <div>
@@ -282,13 +283,16 @@ export default class ShoppingListBuilder extends Component {
     ingredientsSelected : [],
     recipesSelected : [],
     recipiesToDisplay : []
+    
     }
+    var recipeList = []
+    localStorage.setItem('selectedRecipes',JSON.stringify(recipeList))
   }
 
   componentDidMount(){
     //can load things when this component renders here.
-    var recipeList = []
-    //localStorage.setItem('selectedRecipes',JSON.stringify(recipeList))
+    // var recipeList = []
+    // localStorage.setItem('selectedRecipes',JSON.stringify(recipeList))
   }
 
 
