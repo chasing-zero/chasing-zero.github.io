@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/chasing-zero-app/precache-manifest.a25b05446c44f237f4dc840461c207d3.js"
+  "/chasing-zero-app/precache-manifest.2517bebe1a97ae954c07ba519896e378.js"
 );
 
 workbox.clientsClaim();
